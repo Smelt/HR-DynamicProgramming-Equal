@@ -35,10 +35,31 @@ public class Solution {
 		 if( checkEqual(interns)){
 			 System.out.println("0");
 		 }
-		 int max = 0;
+		 int min = Integer.MAX_VALUE;
 		 for(int i = 0; i < interns.length; i++){
-			 
+			 if(interns[i] < min){
+				 min = interns[i];
+			 }
 		 }
+		 int operations = 0;
+		 for(int i = 0; i < interns.length; i++){
+			 int value = interns[i] - min;
+			 operations += operate(value);
+		 }
+		 System.out.println(operations);
+	 }
+	 
+	 private static int operate(int value){
+		 if(value >= 5){
+			 return 1 + operate(value - 5);
+		 }
+		 if(value >= 2){
+			 return 1 + operate(value - 2);
+		 }
+		 if(value >= 1){
+			 return 1 + operate(value - 1);
+		 }
+		 return 0;
 	 }
 	 /**
 	  *This method checks to see if the interns already have an equal amount of chocolate
